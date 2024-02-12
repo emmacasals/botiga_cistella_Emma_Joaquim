@@ -10,7 +10,7 @@
         static void AfegirProducte(string producte, double preu)
         {
 
-        }fsag 
+        }
         static void AfegirProducte(string[] producte, double[] preu)
         {
 
