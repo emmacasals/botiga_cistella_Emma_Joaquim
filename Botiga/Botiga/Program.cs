@@ -35,7 +35,6 @@
         {
             
         }
-<<<<<<< HEAD
         static void Mostrar()
         {
 
@@ -62,9 +61,6 @@
 
         }
         static void ToStringCistella()
-=======
-        static void Algo1()
->>>>>>> branch 'Quim' of https://github.com/emmacasals/botiga_cistella_Emma_Joaquim.git
         {
 
         }
