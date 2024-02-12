@@ -6,5 +6,9 @@
         {
             
         }
+        static void Algo1()
+        {
+
+        }
     }
 }
