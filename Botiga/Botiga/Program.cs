@@ -37,7 +37,7 @@
         }
         static void Mostrar()
         {
-
+            Console.WriteLine("Mostrar productos en lista.");
         }
         static void ToString()
         {
