@@ -29,7 +29,7 @@
         }
         static void OrdenarProducte()
         {
-
+            
         }
         static void OrdenarPreus()
         {
@@ -37,7 +37,7 @@
         }
         static void Mostrar()
         {
-            Console.WriteLine("Mostrar productos en lista.");
+            //Mostrar tots els productes de la botiga de forma amigable
         }
         static void ToString()
         {
@@ -60,6 +60,7 @@
         {
 
         }
+
         static void ToStringCistella()
 
         {
