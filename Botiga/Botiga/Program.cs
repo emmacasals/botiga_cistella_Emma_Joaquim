@@ -5,12 +5,16 @@
         static void Main(string[] args)
         {
             //switch entre botiga o cistella
-            switch ()
+            string num = "0";
+            switch (num)
             {
-                default:
+                case "1":
+                    Mostrar();
+                    break;
+                case "2":
+                    Mostra();
                     break;
             }
-            Mostrar();
         }
     //TENDA
     static void AfegirProducte(string producte, double preu)
