@@ -112,7 +112,7 @@
         {
 
         }
-        static string ToStringCistella(int[] t, int n)
+        static void ToStringCistella()
         {
             string res = "Mostrar taula:\n";
             for (int i = 0; i < n; i++)
