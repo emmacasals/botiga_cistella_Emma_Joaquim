@@ -47,9 +47,9 @@ namespace Botiga
             producte = Console.ReadLine();
             Console.WriteLine("Indica quin preu té el producte que vols afegir");
             preu = Convert.ToDouble(Console.ReadLine);
-            StreamWriter sr = new StreamWriter("Botiga.txt");
-            sr.WriteLine(producte + "," + preu);
-            sr.Close();
+            StreamWriter sw = new StreamWriter("Botiga.txt");
+            sw.Write(producte + "," + preu);
+            sw.Close();
         }
         static void AfegirProducte(string[] producte, double[] preu,ref int nEl)
         {
@@ -82,8 +82,20 @@ namespace Botiga
         static void ModificarPreu(string producte, double preu)
         {
             StreamReader sr = new StreamReader("Botiga.txt");
-            string lectura="";
-            sr.ReadLine(lectura.IndexOf(producte));
+            StreamWriter sw;
+            string lectura = "";
+            while (!sr.EndOfStream)
+            {
+                lectura = sr.ReadLine();
+                if (lectura.Contains(producte))
+                {
+                    sw = new StreamWriter("Botiga.txt");
+                    Console.Write("Escriu el nou preu: ");
+                    string noupreu = Console.ReadLine();
+                    sw.WriteLine(producte+","+noupreu);
+                }
+            }
+            sr.Close();
         }
         static void ModificarProducte(string producteAntic, string producteNou)
         {
