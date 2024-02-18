@@ -22,8 +22,7 @@ namespace Botiga
             string text;
             text = ($"\n----------------------------" +
                 $"\n1. Tenda" +
-                $"\n2. Cistella" +
-                $"\n" +
+                $"\n2. Cistella\n" +
                 $"\n0. Tencar programa" +
                 $"\n----------------------------" +
                 $"\n\nSeleccio: ");
