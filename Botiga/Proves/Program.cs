@@ -44,7 +44,7 @@
         static void Mostrar()
         {
             Console.Clear();
-            StreamReader sr = new StreamReader(@".\Botiga.txt");
+            StreamReader sr = new StreamReader("Botiga.txt");
             string productes;
             Console.WriteLine("Botiga:\n");
             while (!sr.EndOfStream)
