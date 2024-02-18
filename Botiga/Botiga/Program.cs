@@ -4,29 +4,55 @@
     {
         static void Main(string[] args)
         {
-            //switch entre botiga o cistella
-            string num = "0";
+            char opcio = 'a';
+            while (opcio != '0')
+            {
+                do
+                {
+                    Console.Clear();
+                    Console.Write(Menu());
+                    opcio = Console.ReadKey().KeyChar;
+                }
+                while (!(opcio == '1' || opcio == '2' || opcio == '0'));
+                Escollir(opcio);
+            }
+        }
+        static string Menu()
+        {
+            string text;
+            text = ($"\n----------------------------" +
+                $"\n1. Tenda" +
+                $"\n2. Cistella" +
+                $"\n" +
+                $"\n0. Tencar programa" +
+                $"\n----------------------------" +
+                $"\n\nSeleccio: ");
+            return text;
+        }
+        static void Escollir(char num)
+        {
             switch (num)
             {
-                case "1":
+                case '1':
                     Mostrar();
                     break;
-                case "2":
+                case '2':
                     Mostra();
                     break;
             }
         }
-    //TENDA
-    static void AfegirProducte(string producte, double preu)
+        //TENDA
+        static void AfegirProducte(string producte, double preu)
         {  
-            Console.WriteLine("Indica quin producte vols afegir");    
+            Console.WriteLine("Indica quin producte vols afegir");
             producte = Console.ReadLine();
-            Console.WriteLine("Indica quin preu té el producte que vols afegir");  
+            Console.WriteLine("Indica quin preu té el producte que vols afegir");
             preu=Convert.ToInt32(Console.ReadLine);
+
         }
         static void AfegirProducte(string[] producte, double[] preu)
         {
-
+            
         }
         static void AmpliarTenda(int num, string[] productes, double[] preus, double[] preu)
         {
@@ -44,7 +70,7 @@
         {
 
         }
-        static void OrdenarProducte(string producte, double[] preus)
+        static void OrdenarProducte(string[] producte, double[] preus)
         {
             MostrarEnLinia(producte, preus);
             for (int numVolta = 0; numVolta < preus - 1; numVolta++)
@@ -69,8 +95,9 @@
         a un altre espai de memoria fer servir ref
 
          */
-        static void  MostrarEnLinia(int[] producte, int[] preus)
+        static void MostrarEnLinia(int[] producte, int[] preus)
         {
+
             for (int i = 0;i < preus ; i++)
                 Console.Write( "{0}",preus[i]);
             Console.WriteLine();
@@ -81,11 +108,25 @@
         }
         static void Mostrar()
         {
-            switch ()
+            StreamReader sr = new StreamReader(@"Botiga.txt");
+            string productes;
+            Console.WriteLine($"Botiga\n");
+            while ( sr.EndOfStream)
             {
-                default:
-                    break;
+                productes = Format(sr.ReadLine());
+                Console.Write(productes.Substring(0, productes.IndexOf("Preu:")));
+                Console.SetCursorPosition(25, Console.CursorTop);
+                Console.WriteLine(productes.Substring(productes.IndexOf("Preu:")));
             }
+        }
+        static string Format(string productes)
+        {
+            int i = 0;
+            string producte, preu;
+            producte = productes.Substring(0, productes.IndexOf(','));
+            productes = productes.Substring(productes.IndexOf(',') + 1);
+            preu = productes.Substring(0, productes.IndexOf(','));
+            return $"Producte: {producte} Preu: {preu}€";
         }
         static string ToString( int[] t, int n)
         {
@@ -97,7 +138,7 @@
         //CISTELLA
         static void ComprarProducte(string producte, int quantitat, string[] producteBotiga, double[] preus)
         {
-
+            producteBotiga = Mostrar();
         }
         static void ComprarProducte(string[] productes, int[] quantitats)
         {
