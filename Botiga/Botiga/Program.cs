@@ -4,8 +4,14 @@
     {
         static void Main(string[] args)
         {
-            //switch entre botiga o cistella
             string num = "0";
+            Console.WriteLine($"\n----------------------------" +
+                $"\n1. Tenda" +
+                $"\n2. Cistella" +
+                $"\n----------------------------");
+            Console.Write("Seleccio: ");
+            Console.ReadLine();
+            //switch entre botiga o cistella
             switch (num)
             {
                 case "1":
@@ -14,19 +20,23 @@
                 case "2":
                     Mostra();
                     break;
+                default:
+                    Console.WriteLine("Aixo no és una opcio valida.");
+                    break;
             }
         }
     //TENDA
-    static void AfegirProducte(string producte, double preu)
+        static void AfegirProducte(string producte, double preu)
         {  
-            Console.WriteLine("Indica quin producte vols afegir");    
+            Console.WriteLine("Indica quin producte vols afegir");
             producte = Console.ReadLine();
-            Console.WriteLine("Indica quin preu té el producte que vols afegir");  
+            Console.WriteLine("Indica quin preu té el producte que vols afegir");
             preu=Convert.ToInt32(Console.ReadLine);
+
         }
         static void AfegirProducte(string[] producte, double[] preu)
         {
-
+            
         }
         static void AmpliarTenda(int num, string[] productes, double[] preus, double[] preu)
         {
@@ -81,11 +91,7 @@
         }
         static void Mostrar()
         {
-            switch ()
-            {
-                default:
-                    break;
-            }
+
         }
         static string ToString( int[] t, int n)
         {
