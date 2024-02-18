@@ -118,6 +118,39 @@
                 Console.SetCursorPosition(25, Console.CursorTop);
                 Console.WriteLine(productes.Substring(productes.IndexOf("Preu:")));
             }
+                        Console.WriteLine("Escull que vols fer:" +
+                "\n1. Afegir producte" +
+                "\n2. Afegir producte" +
+                "\n3. Ampliar tenda" +
+                "\n4. Modificar preu" +
+                "\n5. Modificar producte" +
+                "\n6. Ordenar producte" +
+                "\n7. Ordenar preu");
+            num = Console.ReadLine();
+            switch (num)
+            {
+                case "1":
+                    AfegirProducte();
+                    break;
+                case "2":
+                    AfegirProducte();
+                    break;
+                case "3":
+                    AmpliarTenda();
+                    break;
+                case "4":
+                    ModificarPreu();
+                    break;
+                case "5":
+                    ModificarProducte();
+                    break;
+                case "6":
+                    OrdenarProducte();
+                    break;
+                case "7":
+                    OrdenarPreus();
+                    break;
+            }    
         }
         static string Format(string productes)
         {
