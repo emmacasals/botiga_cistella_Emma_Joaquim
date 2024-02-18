@@ -203,7 +203,6 @@ namespace Botiga
                 Console.SetCursorPosition(25, Console.CursorTop);
                 Console.WriteLine(productes.Substring(productes.IndexOf("Preu:")));
             }
-
         }
         static string Format(string productes)
         {
@@ -226,7 +225,8 @@ namespace Botiga
         static void ComprarProducte(string producte, int quantitat)
         {
             Console.Clear();
-            Console.WriteLine(Mostrar());
+            Mostrar();
+            Console.WriteLine("Escriu els productes que vols comprar");
         }
         static void ComprarProducte(string[] productes, int[] quantitats)
         {

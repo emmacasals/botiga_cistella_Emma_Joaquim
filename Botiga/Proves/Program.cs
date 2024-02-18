@@ -34,10 +34,10 @@
             switch (num)
             {
                 case '1':
-                    Mostrar();
+                    Tenda();
                     break;
                 case '2':
-                    Mostra();
+                    Cistella();
                     break;
             }
         }
@@ -67,8 +67,83 @@
         static void Mostra()
         {
             Console.Clear();
-            Console.WriteLine("bye");
+            StreamReader sr = new StreamReader("Cistella.txt");
+            Console.WriteLine("La teva sistella actual és: ");
+            while (!sr.EndOfStream)
+            {
+                string line = sr.ReadLine();
+                Console.WriteLine(line);
+            }
+            sr.Close();
             return;
+        }
+        static void Cistella()
+        {
+            Console.Clear();
+            char num;
+            Console.WriteLine("Escull que vols fer:" +
+            "\n1. Mostrar cistella" +
+            "\n2. Comprar producte" +
+            "\n3. Comprar productes" +
+            "\n4. Ordenar cistella");
+            num = Console.ReadKey().KeyChar;
+            switch (num)
+            {
+                case '1':
+                    Mostra();
+                    break;
+                //case '2':
+                //    ComprarProducte();
+                //    break;
+                //case '3':
+                //    ComprarProducte();
+                //    break;
+                //case '4':
+                //    OrdenarCistella();
+                //    break;
+            }
+        }
+        static void Tenda()
+        {
+            Console.Clear();
+            char num;
+            Console.WriteLine("Escull que vols fer:" +
+            "\n1. Mostrar productes" +
+            "\n2. Afegir producte" +
+            "\n3. Afegir producte" +
+            "\n4. Ampliar tenda" +
+            "\n5. Modificar preu" +
+            "\n6. Modificar producte" +
+            "\n7. Ordenar producte" +
+            "\n8. Ordenar preu");
+            num = Console.ReadKey().KeyChar;
+            switch (num)
+            {
+                case '1':
+                    Mostrar();
+                    break;
+                //case '2':
+                //    AfegirProducte(ref nEl);
+                //    break;
+                //case '3':
+                //    AfegirProducte();
+                //    break;
+                //case '4':
+                //    AmpliarTenda(ref nEl);
+                //    break;
+                //case '5':
+                //    ModificarPreu();
+                //    break;
+                //case '6':
+                //    ModificarProducte();
+                //    break;
+                //case '7':
+                //    OrdenarProducte();
+                //    break;
+                //case '8':
+                //    OrdenarPreus();
+                //    break;
+            }
         }
     }
 }
