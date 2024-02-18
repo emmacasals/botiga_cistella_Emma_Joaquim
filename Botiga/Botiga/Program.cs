@@ -58,10 +58,17 @@ namespace Botiga
         {
             Console.Clear();
             StreamReader sr = new StreamReader("Botiga.txt");
-            for(int i=0;i<nEl;i++)
+            string line;
+            int i = 0;
+            while ((line = sr.ReadLine()) != null && i < producte.Length)
             {
-                producte[i];
+                string[] parts = line.Split(',');
+                producte[i] = parts[0];
+                preu[i] = Convert.ToDouble(parts[1]);
+                i++;
             }
+            nEl = i;
+            sr.Close();
         }
         static void AmpliarTenda(int num, string[] productes, double[] preus, double[] preu, ref int nEl)
         {
@@ -138,9 +145,8 @@ namespace Botiga
         {
             Console.Clear();
 
-            for (int i = 0;i < preus ; i++)
-                Console.Write( "{0}",preus[i]);
-            Console.WriteLine();
+            for (int i = 0; i < preus.Length; i++)
+                Console.WriteLine("Producte: {0}, Preu: {1}", producte[i], preus[i]);
         }
         static void OrdenarPreus()
         {
@@ -203,6 +209,7 @@ namespace Botiga
                 Console.SetCursorPosition(25, Console.CursorTop);
                 Console.WriteLine(productes.Substring(productes.IndexOf("Preu:")));
             }
+            sr.Close();
         }
         static string Format(string productes)
         {
