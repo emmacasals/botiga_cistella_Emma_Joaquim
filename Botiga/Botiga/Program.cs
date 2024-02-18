@@ -203,7 +203,6 @@ namespace Botiga
                 Console.SetCursorPosition(25, Console.CursorTop);
                 Console.WriteLine(productes.Substring(productes.IndexOf("Preu:")));
             }
-
         }
         static string Format(string productes)
         {
