@@ -58,7 +58,6 @@ namespace Botiga
             {
                 producte[i];
             }
-
         }
         static void AmpliarTenda(int num, string[] productes, double[] preus, double[] preu, ref int nEl)
         {
@@ -82,7 +81,9 @@ namespace Botiga
         }
         static void ModificarPreu(string producte, double preu)
         {
-
+            StreamReader sr = new StreamReader("Botiga.txt");
+            string lectura="";
+            sr.ReadLine(lectura.IndexOf(producte));
         }
         static void ModificarProducte(string producteAntic, string producteNou)
         {
