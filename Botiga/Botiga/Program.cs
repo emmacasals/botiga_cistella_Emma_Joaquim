@@ -1,4 +1,4 @@
-﻿namespace Botiga
+namespace Botiga
 {
     internal class Program
     {
@@ -47,20 +47,39 @@
             Console.WriteLine("Indica quin producte vols afegir");
             producte = Console.ReadLine();
             Console.WriteLine("Indica quin preu té el producte que vols afegir");
-            preu=Convert.ToInt32(Console.ReadLine);
+            preu = Convert.ToDouble(Console.ReadLine);
+            StreamWriter sr = new StreamWriter("Botiga.txt");
+            sr.WriteLine(producte + "," + preu);
+            sr.Close();
+        }
+        static void AfegirProducte(string[] producte, double[] preu,ref int nEl)
+        {
+            StreamReader sr = new StreamReader("Botiga.txt");
+            for(int i=0;i<nEl;i++)
+            {
+                producte[i];
+            }
 
         }
-        static void AfegirProducte(string[] producte, double[] preu)
+        static void AmpliarTenda(int num, string[] productes, double[] preus, double[] preu, ref int nEl)
         {
-            
-        }
-        static void AmpliarTenda(int num, string[] productes, double[] preus, double[] preu)
-        {
-            string[] aux = new string[productes.Length + num];
-            for (int i = 0;i++;)
-               aux2[i] = productes[i];
-               aux3[i] = preus[i];
-            productes = aux2;
+            StreamReader sr = new StreamReader("Botiga.txt");
+            nEl = 0;
+            string seguiment="";
+            while (!sr.EndOfStream)
+            {
+                if (!sr.EndOfStream)
+                {
+                    seguiment.IndexOf(',');
+                    nEl++;
+                }
+            }
+            nEl++;
+            //string[] aux = new string[productes.Length + num];
+            //for (int i = 0;i++;)
+            //   aux2[i] = productes[i];
+            //   aux3[i] = preus[i];
+            //productes = aux2;
         }
         static void ModificarPreu(string producte, double preu)
         {
@@ -110,6 +129,7 @@
         {
             StreamReader sr = new StreamReader(@"Botiga.txt");
             string productes;
+            string num;
             Console.WriteLine($"Botiga\n");
             while ( sr.EndOfStream)
             {
@@ -118,7 +138,7 @@
                 Console.SetCursorPosition(25, Console.CursorTop);
                 Console.WriteLine(productes.Substring(productes.IndexOf("Preu:")));
             }
-                        Console.WriteLine("Escull que vols fer:" +
+                Console.WriteLine("Escull que vols fer:" +
                 "\n1. Afegir producte" +
                 "\n2. Afegir producte" +
                 "\n3. Ampliar tenda" +
@@ -130,13 +150,13 @@
             switch (num)
             {
                 case "1":
-                    AfegirProducte();
+                    AfegirProducte(ref nEl);
                     break;
                 case "2":
                     AfegirProducte();
                     break;
                 case "3":
-                    AmpliarTenda();
+                    AmpliarTenda(ref nEl);
                     break;
                 case "4":
                     ModificarPreu();
@@ -150,7 +170,7 @@
                 case "7":
                     OrdenarPreus();
                     break;
-            }    
+            }
         }
         static string Format(string productes)
         {
@@ -195,3 +215,4 @@
         }
     }
 }
+
