@@ -1,3 +1,5 @@
+using System;
+
 namespace Botiga
 {
     internal class Program
@@ -33,16 +35,17 @@ namespace Botiga
             switch (num)
             {
                 case '1':
-                    Mostrar();
+                    Tenda();
                     break;
                 case '2':
-                    Mostra();
+                    Cistella();
                     break;
             }
         }
         //TENDA
         static void AfegirProducte(string producte, double preu)
-        {  
+        {
+            Console.Clear();
             Console.WriteLine("Indica quin producte vols afegir");
             producte = Console.ReadLine();
             Console.WriteLine("Indica quin preu té el producte que vols afegir");
@@ -53,6 +56,7 @@ namespace Botiga
         }
         static void AfegirProducte(string[] producte, double[] preu,ref int nEl)
         {
+            Console.Clear();
             StreamReader sr = new StreamReader("Botiga.txt");
             for(int i=0;i<nEl;i++)
             {
@@ -61,6 +65,7 @@ namespace Botiga
         }
         static void AmpliarTenda(int num, string[] productes, double[] preus, double[] preu, ref int nEl)
         {
+            Console.Clear();
             StreamReader sr = new StreamReader("Botiga.txt");
             nEl = 0;
             string seguiment="";
@@ -81,6 +86,7 @@ namespace Botiga
         }
         static void ModificarPreu(string producte, double preu)
         {
+            Console.Clear();
             StreamReader sr = new StreamReader("Botiga.txt");
             StreamWriter sw;
             string lectura = "";
@@ -89,7 +95,7 @@ namespace Botiga
                 lectura = sr.ReadLine();
                 if (lectura.Contains(producte))
                 {
-                    sw = new StreamWriter("Botiga.txt");
+                    sw = new StreamWriter("Botiga2.txt");
                     Console.Write("Escriu el nou preu: ");
                     string noupreu = Console.ReadLine();
                     sw.WriteLine(producte+","+noupreu);
@@ -99,10 +105,12 @@ namespace Botiga
         }
         static void ModificarProducte(string producteAntic, string producteNou)
         {
+            Console.Clear();
 
         }
         static void OrdenarProducte(string[] producte, double[] preus)
         {
+            Console.Clear();
             MostrarEnLinia(producte, preus);
             for (int numVolta = 0; numVolta < preus - 1; numVolta++)
                 if producte[i].CompareTo(preus[numVolta]) == 0
@@ -128,6 +136,7 @@ namespace Botiga
          */
         static void MostrarEnLinia(int[] producte, int[] preus)
         {
+            Console.Clear();
 
             for (int i = 0;i < preus ; i++)
                 Console.Write( "{0}",preus[i]);
@@ -135,13 +144,57 @@ namespace Botiga
         }
         static void OrdenarPreus()
         {
-            
+            Console.Clear();
+
+        }
+        static void Tenda()
+        {
+            Console.Clear();
+            string num;
+                Console.WriteLine("Escull que vols fer:" +
+                "\n1. Mostrar productes" +
+                "\n2. Afegir producte" +
+                "\n3. Afegir producte" +
+                "\n4. Ampliar tenda" +
+                "\n5. Modificar preu" +
+                "\n6. Modificar producte" +
+                "\n7. Ordenar producte" +
+                "\n8. Ordenar preu");
+            num = Console.ReadLine();
+            switch (num)
+            {
+                case "1":
+                    Mostrar();
+                    break;
+                case "2":
+                    AfegirProducte(ref nEl);
+                    break;
+                case "3":
+                    AfegirProducte();
+                    break;
+                case "4":
+                    AmpliarTenda(ref nEl);
+                    break;
+                case "5":
+                    ModificarPreu();
+                    break;
+                case "6":
+                    ModificarProducte();
+                    break;
+                case "7":
+                    OrdenarProducte();
+                    break;
+                case "8":
+                    OrdenarPreus();
+                    break;
+            }
         }
         static void Mostrar()
         {
+            Console.Clear();
             StreamReader sr = new StreamReader(@"Botiga.txt");
             string productes;
-            string num;
+
             Console.WriteLine($"Botiga\n");
             while ( sr.EndOfStream)
             {
@@ -150,39 +203,7 @@ namespace Botiga
                 Console.SetCursorPosition(25, Console.CursorTop);
                 Console.WriteLine(productes.Substring(productes.IndexOf("Preu:")));
             }
-                Console.WriteLine("Escull que vols fer:" +
-                "\n1. Afegir producte" +
-                "\n2. Afegir producte" +
-                "\n3. Ampliar tenda" +
-                "\n4. Modificar preu" +
-                "\n5. Modificar producte" +
-                "\n6. Ordenar producte" +
-                "\n7. Ordenar preu");
-            num = Console.ReadLine();
-            switch (num)
-            {
-                case "1":
-                    AfegirProducte(ref nEl);
-                    break;
-                case "2":
-                    AfegirProducte();
-                    break;
-                case "3":
-                    AmpliarTenda(ref nEl);
-                    break;
-                case "4":
-                    ModificarPreu();
-                    break;
-                case "5":
-                    ModificarProducte();
-                    break;
-                case "6":
-                    OrdenarProducte();
-                    break;
-                case "7":
-                    OrdenarPreus();
-                    break;
-            }
+
         }
         static string Format(string productes)
         {
@@ -195,31 +216,69 @@ namespace Botiga
         }
         static string ToString( int[] t, int n)
         {
+            Console.Clear();
             string res = "Mostrar taula:\n";
             for (int i = 0; i < n; i++)
                 res= res + "Taula[" + i + "] = " + t[i] + "\n";
                  return res;
         }
         //CISTELLA
-        static void ComprarProducte(string producte, int quantitat, string[] producteBotiga, double[] preus)
+        static void ComprarProducte(string producte, int quantitat)
         {
-            producteBotiga = Mostrar();
+            Console.Clear();
+            Console.WriteLine(Mostrar());
         }
         static void ComprarProducte(string[] productes, int[] quantitats)
         {
+            Console.Clear();
 
         }
         static void OrdenarCistella()
         {
+            Console.Clear();
 
-
+        }
+        static void Cistella()
+        {
+            Console.Clear();
+            string num;
+            Console.WriteLine("Escull que vols fer:" +
+            "\n1. Mostrar cistella" +
+            "\n2. Comprar producte" +
+            "\n3. Comprar productes" +
+            "\n4. Ordenar cistella");
+            num = Console.ReadLine();
+            switch (num)
+            {
+                case "1":
+                    Mostra();
+                    break;
+                case "2":
+                    ComprarProducte();
+                    break;
+                case "3":
+                    ComprarProducte();
+                    break;
+                case "4":
+                    OrdenarCistella();
+                    break;
+            }
         }
         static void Mostra()
         {
-
+            Console.Clear();
+            StreamReader sr = new StreamReader("Cistella.txt");
+            Console.WriteLine("La teva sistella actual és: ");
+            while (!sr.EndOfStream)
+            {
+                string line = sr.ReadLine();
+                Console.WriteLine(line);
+            }
+            sr.Close();
         }
         static void ToStringCistella()
         {
+            Console.Clear();
             string res = "Mostrar taula:\n";
             for (int i = 0; i < n; i++)
                 res = res + "Taula[" + i + "] = " + t[i] + "\n";
