@@ -1,0 +1,3 @@
+Carne,23.1
+pollo,12.3
+boli,0.6
