@@ -1,4 +1,4 @@
-﻿namespace Botiga
+namespace Botiga
 {
     internal class Program
     {
@@ -138,7 +138,7 @@
                 Console.SetCursorPosition(25, Console.CursorTop);
                 Console.WriteLine(productes.Substring(productes.IndexOf("Preu:")));
             }
-            Console.WriteLine("Escull que vols fer:" +
+                Console.WriteLine("Escull que vols fer:" +
                 "\n1. Afegir producte" +
                 "\n2. Afegir producte" +
                 "\n3. Ampliar tenda" +
@@ -215,3 +215,4 @@
         }
     }
 }
+
