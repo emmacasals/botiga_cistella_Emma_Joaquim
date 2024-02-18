@@ -226,7 +226,8 @@ namespace Botiga
         static void ComprarProducte(string producte, int quantitat)
         {
             Console.Clear();
-            Console.WriteLine(Mostrar());
+            Mostrar();
+            Console.WriteLine("Escriu els productes que vols comprar");
         }
         static void ComprarProducte(string[] productes, int[] quantitats)
         {
