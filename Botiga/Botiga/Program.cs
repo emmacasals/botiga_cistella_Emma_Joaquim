@@ -1,9 +1,14 @@
 using System;
+using System.IO;
 
 namespace Botiga
 {
     internal class Program
     {
+        static string[] producte = new string[100];
+        static double[] preus = new double[100];
+        static int nEl = 0;
+
         static void Main(string[] args)
         {
             char opcio = 'a';
@@ -19,17 +24,17 @@ namespace Botiga
                 Escollir(opcio);
             }
         }
+
         static string Menu()
         {
-            string text;
-            text = ($"\n----------------------------" +
-                $"\n1. Tenda" +
-                $"\n2. Cistella\n" +
-                $"\n0. Tencar programa" +
-                $"\n----------------------------" +
-                $"\n\nSeleccio: ");
-            return text;
+            return ($"\n----------------------------" +
+                    $"\n1. Tenda" +
+                    $"\n2. Cistella\n" +
+                    $"\n0. Tancar programa" +
+                    $"\n----------------------------" +
+                    $"\n\nSeleccio: ");
         }
+
         static void Escollir(char num)
         {
             switch (num)
@@ -42,33 +47,44 @@ namespace Botiga
                     break;
             }
         }
-        //TENDA
-        static void AfegirProducte(string producte, double preu)
+
+        // TENDA
+
+        static void AfegirProducte(ref string producte, ref double preu)
         {
             Console.Clear();
             Console.WriteLine("Indica quin producte vols afegir");
             producte = Console.ReadLine();
             Console.WriteLine("Indica quin preu té el producte que vols afegir");
-            preu = Convert.ToDouble(Console.ReadLine);
-            StreamWriter sw = new StreamWriter("Botiga.txt");
-            sw.Write(producte + "," + preu);
+            preu = Convert.ToDouble(Console.ReadLine());
+            StreamWriter sw = new StreamWriter("Botiga.txt", append: true);
+            sw.WriteLine(producte + "," + preu);
             sw.Close();
         }
-        static void AfegirProducte(string[] producte, double[] preu,ref int nEl)
+
+        static void AfegirProducte(ref string[] producte, ref double[] preu, ref int nEl)
         {
             Console.Clear();
             StreamReader sr = new StreamReader("Botiga.txt");
-            for(int i=0;i<nEl;i++)
+            string line;
+            int i = 0;
+            while ((line = sr.ReadLine()) != null && i < producte.Length)
             {
-                producte[i];
+                string[] parts = line.Split(',');
+                producte[i] = parts[0];
+                preu[i] = Convert.ToDouble(parts[1]);
+                i++;
             }
+            nEl = i;
+            sr.Close();
         }
-        static void AmpliarTenda(int num, string[] productes, double[] preus, double[] preu, ref int nEl)
+
+        static void AmpliarTenda(ref int num, ref string[] productes, ref double[] preus, ref int nEl)
         {
             Console.Clear();
             StreamReader sr = new StreamReader("Botiga.txt");
             nEl = 0;
-            string seguiment="";
+            string seguiment = "";
             while (!sr.EndOfStream)
             {
                 if (!sr.EndOfStream)
@@ -84,6 +100,7 @@ namespace Botiga
             //   aux3[i] = preus[i];
             //productes = aux2;
         }
+
         static void ModificarPreu(string producte, double preu)
         {
             Console.Clear();
@@ -98,24 +115,28 @@ namespace Botiga
                     sw = new StreamWriter("Botiga2.txt");
                     Console.Write("Escriu el nou preu: ");
                     string noupreu = Console.ReadLine();
-                    sw.WriteLine(producte+","+noupreu);
+                    sw.WriteLine(producte + "," + noupreu);
                 }
             }
             sr.Close();
         }
+
         static void ModificarProducte(string producteAntic, string producteNou)
         {
             Console.Clear();
 
         }
-        static void OrdenarProducte(string[] producte, double[] preus)
+
+        static void OrdenarProducte(ref string[] producte, ref double[] preus)
         {
             Console.Clear();
             MostrarEnLinia(producte, preus);
-            for (int numVolta = 0; numVolta < preus - 1; numVolta++)
-                if producte[i].CompareTo(preus[numVolta]) == 0
-                    (producte[i], producte[i + 1]) = (producte[int + 1], producte[i]);
-                    (preus[i], preus[i + 1]) = (preus[int + 1], preus[i]);
+            for (int i = 0; i < preus.Length - 1; i++)
+            {
+                if (producte[i].CompareTo(preus[i + 1]) == 0)
+                    (producte[i], producte[i + 1]) = (producte[i + 1], producte[i]);
+                (preus[i], preus[i + 1]) = (preus[i + 1], preus[i]);
+            }
         }
 
         //ampliacio de concepte
@@ -134,32 +155,33 @@ namespace Botiga
         a un altre espai de memoria fer servir ref
 
          */
-        static void MostrarEnLinia(int[] producte, int[] preus)
+        static void MostrarEnLinia(string[] producte, double[] preus)
         {
             Console.Clear();
 
-            for (int i = 0;i < preus ; i++)
-                Console.Write( "{0}",preus[i]);
-            Console.WriteLine();
+            for (int i = 0; i < preus.Length; i++)
+                Console.WriteLine("Producte: {0}, Preu: {1}", producte[i], preus[i]);
         }
-        static void OrdenarPreus()
+
+        static void OrdenarPreus(ref double[] preus)
         {
             Console.Clear();
 
         }
+
         static void Tenda()
         {
             Console.Clear();
             string num;
-                Console.WriteLine("Escull que vols fer:" +
-                "\n1. Mostrar productes" +
-                "\n2. Afegir producte" +
-                "\n3. Afegir producte" +
-                "\n4. Ampliar tenda" +
-                "\n5. Modificar preu" +
-                "\n6. Modificar producte" +
-                "\n7. Ordenar producte" +
-                "\n8. Ordenar preu");
+            Console.WriteLine("Escull que vols fer:" +
+            "\n1. Mostrar productes" +
+            "\n2. Afegir producte" +
+            "\n3. Afegir producte" +
+            "\n4. Ampliar tenda" +
+            "\n5. Modificar preu" +
+            "\n6. Modificar producte" +
+            "\n7. Ordenar producte" +
+            "\n8. Ordenar preu");
             num = Console.ReadLine();
             switch (num)
             {
@@ -167,28 +189,29 @@ namespace Botiga
                     Mostrar();
                     break;
                 case "2":
-                    AfegirProducte(ref nEl);
+                    AfegirProducte(ref producte[0], ref preus[0]);
                     break;
                 case "3":
-                    AfegirProducte();
+                    AfegirProducte(ref producte, ref preus, ref nEl);
                     break;
                 case "4":
-                    AmpliarTenda(ref nEl);
+                    AmpliarTenda(ref nEl, ref producte, ref preus, ref nEl);
                     break;
                 case "5":
-                    ModificarPreu();
+                    ModificarPreu(producte[0], preus[0]);
                     break;
                 case "6":
-                    ModificarProducte();
+                    ModificarProducte(producte[0], producte[0]);
                     break;
                 case "7":
-                    OrdenarProducte();
+                    OrdenarProducte(ref producte, ref preus);
                     break;
                 case "8":
-                    OrdenarPreus();
+                    OrdenarPreus(ref preus);
                     break;
             }
         }
+
         static void Mostrar()
         {
             Console.Clear();
@@ -196,14 +219,16 @@ namespace Botiga
             string productes;
 
             Console.WriteLine($"Botiga\n");
-            while ( sr.EndOfStream)
+            while (!sr.EndOfStream)
             {
                 productes = Format(sr.ReadLine());
                 Console.Write(productes.Substring(0, productes.IndexOf("Preu:")));
                 Console.SetCursorPosition(25, Console.CursorTop);
                 Console.WriteLine(productes.Substring(productes.IndexOf("Preu:")));
             }
+            sr.Close();
         }
+
         static string Format(string productes)
         {
             int i = 0;
@@ -213,31 +238,37 @@ namespace Botiga
             preu = productes.Substring(0, productes.IndexOf(','));
             return $"Producte: {producte} Preu: {preu}€";
         }
-        static string ToString( int[] t, int n)
+
+        static string ToString(int[] t, int n)
         {
             Console.Clear();
             string res = "Mostrar taula:\n";
             for (int i = 0; i < n; i++)
-                res= res + "Taula[" + i + "] = " + t[i] + "\n";
-                 return res;
+                res = res + "Taula[" + i + "] = " + t[i] + "\n";
+            return res;
         }
+
         //CISTELLA
-        static void ComprarProducte(string producte, int quantitat)
+        static void ComprarProducte(string[] productes, int[] quantitats)
         {
             Console.Clear();
             Mostrar();
             Console.WriteLine("Escriu els productes que vols comprar");
+          
         }
-        static void ComprarProducte(string[] productes, int[] quantitats)
+
+        static void ComprarProductes()
         {
             Console.Clear();
 
         }
+
         static void OrdenarCistella()
         {
             Console.Clear();
 
         }
+
         static void Cistella()
         {
             Console.Clear();
@@ -257,13 +288,42 @@ namespace Botiga
                     ComprarProducte();
                     break;
                 case "3":
-                    ComprarProducte();
+                    ComprarProductes();
                     break;
                 case "4":
                     OrdenarCistella();
                     break;
             }
         }
+
+
+        static void Cistella()
+        {
+            Console.Clear();
+            string num;
+            Console.WriteLine("Escull que vols fer:" +
+            "\n1. Mostrar cistella" +
+            "\n2. Comprar producte" +
+            "\n3. Comprar productes" +
+            "\n4. Ordenar cistella");
+            num = Console.ReadLine();
+            switch (num)
+            {
+                case "1":
+                    Mostra();
+                    break;
+                case "2":
+                    ComprarProducte();
+                    break;
+                case "3":
+                    ComprarProductes();
+                    break;
+                case "4":
+                    OrdenarCistella();
+                    break;
+            }
+        }
+
         static void Mostra()
         {
             Console.Clear();
@@ -276,14 +336,17 @@ namespace Botiga
             }
             sr.Close();
         }
-        static void ToStringCistella()
+
+        static string ToStringCistella(int[] t, int n)
         {
             Console.Clear();
-            string res = "Mostrar taula:\n";
+            string res = "Mostrar cistella:\n";
             for (int i = 0; i < n; i++)
-                res = res + "Taula[" + i + "] = " + t[i] + "\n";
+            {
+                res += "Cistella[" + i + "] = " + t[i] + "\n";
+            }
             return res;
         }
+
     }
 }
-
