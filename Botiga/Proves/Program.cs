@@ -3,36 +3,72 @@
     internal class Program
     {
         static void Main(string[] args)
-        {   
-            string num = "0";
-            Console.WriteLine($"\n----------------------------" +
+        {
+            char opcio = 'a';
+            while (opcio != '0')
+            {
+                do
+                {
+                    Console.Clear();
+                    Console.Write(Menu());
+                    opcio = Console.ReadKey().KeyChar;
+                }
+                while (!(opcio == '1' || opcio == '2' || opcio == '0'));
+                Escollir(opcio);
+            }
+        }
+        static string Menu()
+        {
+            string text;
+            text = ($"\n----------------------------" +
                 $"\n1. Tenda" +
                 $"\n2. Cistella" +
-                $"\n----------------------------");
-            Console.Write("Seleccio: ");
-            num = Console.ReadLine();
-            //switch entre botiga o cistella
-            
+                $"\n" +
+                $"\n0. Tencar programa" +
+                $"\n----------------------------" +
+                $"\n\nSeleccio: ");
+            return text;
+        }
+        static void Escollir(char num)
+        {
             switch (num)
             {
-                case "1":
+                case '1':
                     Mostrar();
                     break;
-                case "2":
+                case '2':
                     Mostra();
-                    break;
-                default:
-                    Console.WriteLine("Aixo no és una opcio valida.");
                     break;
             }
         }
         static void Mostrar()
         {
-            Console.WriteLine("hello");
+            Console.Clear();
+            StreamReader sr = new StreamReader(@".\Botiga.txt");
+            string productes;
+            Console.WriteLine("Botiga:\n");
+            while (!sr.EndOfStream)
+            {
+                productes = Format(sr.ReadLine());
+                Console.Write(productes);
+            }
+            sr.Close();
+            return;
+        }
+        static string Format(string productes)
+        {
+            int i = 0;
+            string producte, preu;
+            producte = productes.Substring(0, productes.IndexOf(','));
+            productes = productes.Substring(productes.IndexOf(',') + 1);
+            preu = productes.Substring(0, productes.IndexOf(','));
+            return $"Producte: {producte} Preu: {preu}€";
         }
         static void Mostra()
         {
+            Console.Clear();
             Console.WriteLine("bye");
+            return;
         }
     }
 }
